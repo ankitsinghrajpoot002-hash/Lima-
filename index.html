@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>LIMA BATCH | Mission NDA 1 2027</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#070a0e">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body oncontextmenu="return false;">
+
+  <!-- Dynamic Anti-Piracy Watermark -->
+  <div id="dynamicWatermark" class="watermark-overlay hidden">CADET // VERIFIED</div>
+
+  <!-- Splash Screen (2 Seconds Execution) -->
+  <div id="splashScreen" class="splash-container">
+    <div class="splash-badge">
+      <div class="radar-scan"></div>
+      <div class="insignia">⚔️</div>
+    </div>
+    <h1 class="splash-title">LIMA BATCH</h1>
+    <p class="splash-subtitle">MISSION NDA 1 2027</p>
+    <div class="splash-footer">Powered by <span>KALUA X</span></div>
+  </div>
+
+  <!-- Offline Warning Banner -->
+  <div id="networkAlert" class="network-alert hidden">
+    ⚠️ TACTICAL COMMS OFFLINE — OPERATING ON LOCAL CACHE
+  </div>
+
+  <!-- First-Time Student / SuperUser Login Modal -->
+  <div id="authModal" class="modal-backdrop hidden">
+    <div class="terminal-card">
+      <div class="terminal-header">
+        <span class="status-dot"></span>
+        <span id="authHeaderTitle">STUDENT ACCESS GATE</span>
+      </div>
+      <div class="terminal-body">
+        <div id="studentInputGroup">
+          <label>CADET IDENTIFIER (YOUR NAME)</label>
+          <input type="text" id="cadetNameInput" placeholder="Enter Full Name" autocomplete="off">
+        </div>
+        <label id="passLabel">TACTICAL CLEARANCE CODE</label>
+        <input type="password" id="passcodeInput" placeholder="Enter Clearance Code">
+        
+        <button id="authSubmitBtn" class="action-btn">AUTHENTICATE ENTRY</button>
+        <p id="authErrorMsg" class="error-text hidden">INVALID CLEARANCE CODE</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main App Shell -->
+  <div id="appContainer" class="app-wrapper hidden">
+    
+    <!-- Top Strategic Navigation Bar -->
+    <header class="tactical-navbar">
+      <div class="logo-box">
+        <span class="batch-tag">LIMA</span>
+        <span class="academy-tag">NDA WAR ROOM</span>
+      </div>
+      <!-- Hidden Easter Egg Trigger (Tap 7 Times Here) -->
+      <div id="easterEggTrigger" class="secret-node" title="System Node">
+        <span class="node-indicator"></span>
+      </div>
+    </header>
+
+    <!-- Tactical Fear-Inducing Countdown HUD -->
+    <section class="hud-countdown-zone">
+      <div class="hud-top-label">
+        <span class="blink-dot"></span> NDA 1 2027 TARGET STRIKE: 11 APRIL 2027
+      </div>
+      <div class="hud-clock-grid">
+        <div class="clock-unit"><span id="cdDays">000</span><label>DAYS</label></div>
+        <div class="clock-sep">:</div>
+        <div class="clock-unit"><span id="cdHours">00</span><label>HOURS</label></div>
+        <div class="clock-sep">:</div>
+        <div class="clock-unit"><span id="cdMins">00</span><label>MINUTES</label></div>
+        <div class="clock-sep">:</div>
+        <div class="clock-unit"><span id="cdSecs">00</span><label>SECONDS</label></div>
+      </div>
+      <div class="reality-warning">
+        <p>⚠️ "Every wasted hour pushes 400+ competitors ahead of you into Khadakwasla. Clear or sit out."</p>
+      </div>
+    </section>
+
+    <!-- Interactive Carousel (Tactical Announcements) -->
+    <section class="slider-module">
+      <div class="slider-track" id="sliderTrack">
+        <div class="slide-item active-slide">
+          <div class="slide-content">
+            <span class="pill-badge">TACTICAL ALERT</span>
+            <h3>Mathematics Mastery: Calculus & Trigo Phase</h3>
+            <p>Weightage: 180+ Marks. Complete pending lectures & sheets.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Subject Selector Tabs -->
+    <nav class="category-tabs">
+      <button class="cat-btn active" data-cat="MATHS">MATHS</button>
+      <button class="cat-btn" data-cat="GAT">GAT (GENERAL ABILITY)</button>
+      <button class="cat-btn" data-cat="EXTRA_PDF">EXTRA INTEL / PYQs</button>
+    </nav>
+
+    <!-- Dynamic Sub-Nav (Appears for GAT: English, Physics, Geo, etc.) -->
+    <div id="subCatNav" class="sub-category-bar hidden"></div>
+
+    <!-- Active Media Stage: Custom Video Player + Smooth PDF Engine -->
+    <main class="media-stage">
+      
+      <!-- Distraction-Free Custom YouTube Player Container -->
+      <section id="playerModule" class="player-wrapper hidden">
+        <div class="player-head">
+          <span id="currentLectureTitle">Select a lecture to stream</span>
+          <button id="closePlayerBtn" class="close-btn">✕</button>
+        </div>
+        <div class="iframe-box">
+          <div id="ytPlayerTarget"></div>
+        </div>
+        <!-- Tactical Player Controls Bar -->
+        <div class="tactical-controls">
+          <button class="ctrl-btn" onclick="seekRelative(-10)">⏪ -10s</button>
+          <button class="ctrl-btn" onclick="seekRelative(10)">+10s ⏩</button>
+          <div class="speed-selector">
+            <button class="spd-btn active" onclick="setPlaySpeed(1)">1x</button>
+            <button class="spd-btn" onclick="setPlaySpeed(1.25)">1.25x</button>
+            <button class="spd-btn" onclick="setPlaySpeed(1.5)">1.5x</button>
+            <button class="spd-btn" onclick="setPlaySpeed(2)">2x</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- High-Capacity 100MB+ PDF Engine -->
+      <section id="pdfViewerModule" class="pdf-wrapper hidden">
+        <div class="pdf-head">
+          <span id="currentPdfTitle">Document Inspector</span>
+          <div class="pdf-action-group">
+            <a id="nativePdfDownloadLink" href="#" target="_blank" class="pdf-btn native-btn">Open in Native App</a>
+            <button id="closePdfBtn" class="close-btn">✕</button>
+          </div>
+        </div>
+        <div class="pdf-frame-container">
+          <iframe id="pdfFrame" src="" frameborder="0" loading="lazy"></iframe>
+        </div>
+      </section>
+
+      <!-- Chapters & Lectures Feed (Dynamically Injected) -->
+      <section id="batchContentFeed" class="content-feed"></section>
+    </main>
+
+    <!-- SuperUser Admin Panel Modal (Hidden Behind 7 Taps) -->
+    <div id="adminModal" class="modal-backdrop hidden">
+      <div class="terminal-card admin-card">
+        <div class="terminal-header">
+          <span class="status-dot admin-dot"></span>
+          <span>COMMANDING OFFICER CONSOLE (SUPERUSER)</span>
+          <button id="closeAdminBtn" class="close-btn">✕</button>
+        </div>
+        <div class="terminal-body">
+          <label>SELECT MAIN SECTOR</label>
+          <select id="adminCategorySelect">
+            <option value="MATHS">MATHS</option>
+            <option value="GAT">GAT</option>
+            <option value="EXTRA_PDF">EXTRA PDF</option>
+          </select>
+
+          <div id="adminGatSubjectField" class="hidden">
+            <label>GAT SUBJECT</label>
+            <input type="text" id="adminGatSubjectInput" placeholder="e.g. Physics, History, Geography, English">
+          </div>
+
+          <label>CHAPTER NAME</label>
+          <input type="text" id="adminChapterInput" placeholder="e.g. Trigonometry / Modern History">
+
+          <label>LECTURE TITLE</label>
+          <input type="text" id="adminTitleInput" placeholder="e.g. Class 01 : Fundamentals & Concepts">
+
+          <label>YOUTUBE LINK OR VIDEO ID</label>
+          <input type="text" id="adminYtInput" placeholder="Paste full YouTube Link or ID">
+
+          <label>PDF / NOTES LINK (DRIVE / TELEGRAM)</label>
+          <input type="text" id="adminPdfInput" placeholder="Paste Direct Download or Drive Link">
+
+          <label>EXTRA INTEL LINK (OPTIONAL)</label>
+          <input type="text" id="adminExtraInput" placeholder="Formula sheet, PYQ sheet link">
+
+          <button id="adminSaveEntryBtn" class="action-btn">PUBLISH LECTURE TO CLOUD</button>
+          <button id="adminExportBtn" class="action-btn-secondary">EXPORT DATA BACKUP (JSON)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security Trap Banner -->
+    <footer class="app-footer">
+      <p>LIMA BATCH // SECURE ASPIRANT ENVIRONMENT // KALUA X</p>
+    </footer>
+  </div>
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="app.js"></script>
+</body>
+</html>
