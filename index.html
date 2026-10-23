@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Defence Roger | LIMA BATCH</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
+</head>
+<body oncontextmenu="return false;">
+
+  <!-- Anti-Piracy Floating Watermark -->
+  <div id="dynamicWatermark" class="watermark-overlay hidden">CADET // VERIFIED</div>
+
+  <!-- Splash Screen (2 Seconds) -->
+  <div id="splashScreen" class="splash-screen">
+    <div class="splash-content">
+      <div class="splash-logo-box">
+        <span class="medal-icon">🎖️</span>
+      </div>
+      <h1 class="brand-title">Defence Roger</h1>
+      <div class="splash-progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <p class="splash-credit">Powered by <span>KALUA X</span></p>
+    </div>
+  </div>
+
+  <!-- First Time Cadet Login Modal -->
+  <div id="authModal" class="modal-overlay hidden">
+    <div class="auth-card">
+      <div class="auth-header">
+        <span class="auth-badge">CLEARANCE REQUIRED</span>
+        <h2>Cadet Login</h2>
+        <p>Enter your credentials to enter the batch</p>
+      </div>
+      <div class="input-group">
+        <label>YOUR NAME</label>
+        <input type="text" id="cadetNameInput" placeholder="Enter Full Name" autocomplete="off">
+      </div>
+      <div class="input-group">
+        <label>BATCH ACCESS CODE</label>
+        <input type="password" id="passcodeInput" placeholder="Enter Access Code">
+      </div>
+      <button id="authSubmitBtn" class="primary-btn">Enter LIMA Batch</button>
+      <p id="authErrorMsg" class="error-msg hidden">INVALID ACCESS CODE</p>
+    </div>
+  </div>
+
+  <!-- Main App Shell -->
+  <div id="appContainer" class="main-layout hidden">
+
+    <!-- Top App Bar -->
+    <header class="top-nav">
+      <div class="brand-group">
+        <h2 class="brand-name">Defence Roger</h2>
+        <span class="evil-eye" id="easterEggTrigger">😈</span>
+      </div>
+    </header>
+
+    <!-- Main Dynamic Container -->
+    <main class="page-body">
+
+      <!-- View 1: Home View -->
+      <section id="viewHome" class="tab-view active-view">
+        
+        <!-- Header Info & Days Countdown -->
+        <div class="profile-strip">
+          <div>
+            <p class="greeting-text">Good day 👋</p>
+            <h3 id="displayCadetName" class="user-heading">CADET</h3>
+            <span class="streak-badge">🔥 <span id="streakDays">1</span> day streak</span>
+          </div>
+          <!-- Target 11 April 2027 Countdown Widget -->
+          <div class="countdown-widget">
+            <h2 id="daysToNDA">000</h2>
+            <p>days to NDA 1 2027</p>
+          </div>
+        </div>
+
+        <!-- Banner Carousel -->
+        <div class="banner-slider">
+          <div class="banner-card telegram-banner">
+            <div class="banner-info">
+              <span class="sub-label">FOLLOW US ON</span>
+              <h4>TELEGRAM</h4>
+              <p>@Defence_Roger</p>
+            </div>
+            <div class="banner-graphic">🛡️</div>
+          </div>
+        </div>
+
+        <!-- Continue Watching Section -->
+        <div class="section-container" id="continueWatchSection">
+          <h4 class="section-title">Continue watching</h4>
+          <div class="continue-card" id="continueCard" onclick="resumeLastLecture()">
+            <div class="play-circle">▶</div>
+            <span id="continueLectureTitle" class="continue-title">Algebra - Log 02</span>
+          </div>
+        </div>
+
+        <!-- Batch & Subjects Cards Section -->
+        <div class="section-container">
+          <div class="section-header-row">
+            <h4 class="section-title" id="currentSectionBreadcrumb">Choose your exam</h4>
+            <button id="backBtn" class="back-link hidden" onclick="navigateBack()">← Back</button>
+          </div>
+          
+          <!-- Dynamic Content Grid -->
+          <div id="cardsGrid" class="cards-list"></div>
+
+          <!-- Add Action Button (Visible for Admin Only) -->
+          <button id="dynamicAddBtn" class="floating-add-btn hidden" onclick="openAddModal()">
+            + Add Unit
+          </button>
+        </div>
+      </section>
+
+      <!-- View 2: Lecture Player View -->
+      <section id="viewPlayer" class="tab-view hidden">
+        <div class="lecture-screen-header">
+          <button class="back-circle-btn" onclick="closePlayerView()">←</button>
+          <h4 id="playerLectureHeading">Lecture Title</h4>
+        </div>
+
+        <!-- Player Container -->
+        <div class="video-box">
+          <div id="ytPlayerTarget"></div>
+        </div>
+
+        <div class="lecture-details-card">
+          <div class="lecture-action-strip">
+            <button id="markCompleteBtn" class="pill-outline-btn" onclick="toggleComplete()">
+              Mark as complete
+            </button>
+            <button id="openPdfBtn" class="pill-outline-btn" onclick="togglePdfInline()">
+              📄 Open PDF
+            </button>
+          </div>
+
+          <!-- In-Built Smooth PDF Reader (Embed) -->
+          <div id="inlinePdfBox" class="inline-pdf-container hidden">
+            <div class="pdf-action-bar">
+              <span>Class Notes Document</span>
+              <a id="nativeDownloadLink" href="#" target="_blank" class="native-link">Open in Native App</a>
+            </div>
+            <iframe id="pdfFrameTarget" src="" frameborder="0"></iframe>
+          </div>
+
+          <!-- Notes Area -->
+          <div class="notes-box">
+            <label>My notes</label>
+            <textarea id="cadetNotesArea" placeholder="Write your notes here..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- View 3: Admin Console View -->
+      <section id="viewAdmin" class="tab-view hidden">
+        <div class="admin-wrapper">
+          <h3 class="admin-title">Admin Management</h3>
+
+          <!-- Add Access Strip -->
+          <div class="admin-card">
+            <h4>Cadet Access Manager</h4>
+            <div class="admin-input-row">
+              <input type="text" id="subscriberInput" placeholder="cadet_id / email">
+              <button class="primary-btn-sm" onclick="grantAccess()">Give access</button>
+            </div>
+          </div>
+
+          <!-- Banners & Cloud Data -->
+          <div class="admin-card">
+            <h4>Data Backup & Cloud Sync</h4>
+            <button class="primary-btn-sm" onclick="exportDataJson()">Export JSON Backup</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- View 4: Profile View -->
+      <section id="viewProfile" class="tab-view hidden">
+        <div class="profile-card-page">
+          <div class="avatar-box">🎖️</div>
+          <h3 id="profileNameDisplay">Cadet</h3>
+          <p class="batch-badge-pill">LIMA BATCH // 2027</p>
+          <button class="logout-btn" onclick="logoutCadet()">Logout</button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Dock -->
+    <nav class="bottom-dock">
+      <button class="dock-item active" data-tab="Home" onclick="switchTab('Home')">
+        <span class="dock-icon">🏠</span>
+        <span class="dock-label">Home</span>
+      </button>
+      <button id="adminDockTab" class="dock-item hidden" data-tab="Admin" onclick="switchTab('Admin')">
+        <span class="dock-icon">⚙️</span>
+        <span class="dock-label">Admin</span>
+      </button>
+      <button class="dock-item" data-tab="Profile" onclick="switchTab('Profile')">
+        <span class="dock-icon">👤</span>
+        <span class="dock-label">Profile</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Add Modal for Admin -->
+  <div id="addModal" class="modal-overlay hidden">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h3 id="addModalTitle">Add New Item</h3>
+      </div>
+      <div class="input-group">
+        <label>ITEM NAME / TITLE</label>
+        <input type="text" id="newItemTitle" placeholder="e.g. Algebra / Lecture 01">
+      </div>
+      <div class="input-group" id="ytInputGroup">
+        <label>YOUTUBE LINK OR ID</label>
+        <input type="text" id="newItemYt" placeholder="YouTube Video URL">
+      </div>
+      <div class="input-group" id="pdfInputGroup">
+        <label>PDF LINK (DRIVE / TELEGRAM)</label>
+        <input type="text" id="newItemPdf" placeholder="Google Drive or direct download URL">
+      </div>
+      <button class="primary-btn" onclick="saveNewItem()">Save Entry</button>
+      <button class="cancel-link" onclick="closeAddModal()">Cancel</button>
+    </div>
+  </div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="app.js"></script>
+</body>
+</html>
